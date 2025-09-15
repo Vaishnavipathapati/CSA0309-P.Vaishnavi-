@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+#define MAX 10
+int visited[MAX];
+
+void dfs(int a[MAX][MAX], int n, int v)
+{
+    visited[v] = 1;
+    printf("%d ", v);
+    for (int i = 0; i < n; i++)
+    {
+        if (a[v][i] && !visited[i])
+            dfs(a, n, i);
+    }
+}
+
+void main()
+{
+    int a[MAX][MAX] = {
+        {0, 1, 1, 0},
+        {1, 0, 1, 1},
+        {1, 1, 0, 1},
+        {0, 1, 1, 0}};
+    for (int i = 0; i < 4; i++)
+        visited[i] = 0;
+    printf("DFS: ");
+    dfs(a, 4, 0);
+}
